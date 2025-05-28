@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -24,4 +26,8 @@ public class Pedido {
 
     @ManyToOne
     private Produto produto; // Paciente agendado
+
+    private String status;
+    private LocalDate data;
+
 }

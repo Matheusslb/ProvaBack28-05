@@ -34,7 +34,7 @@ public class ProdutoController {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletarMedico(@PathVariable Long id) {
+    public ResponseEntity<Void> deletar(@PathVariable Long id) {
         produtoServices.deletar(id);
         return ResponseEntity.noContent().build();
     }
@@ -47,8 +47,9 @@ public class ProdutoController {
                     produto.setEspecificacao(novoProduto.getEspecificacao());
                     produto.setQuantidade(novoProduto.getQuantidade());
                     produto.setPreco(novoProduto.getPreco());
+                    produto.setEstoque(novoProduto.getEstoque());
                     return produtoRepository.save(produto);
                 })
-                .orElseThrow(() -> new RuntimeException("Aviso não encontrado"));
+                .orElseThrow(() -> new RuntimeException("Produto não encontrado"));
     }
 }

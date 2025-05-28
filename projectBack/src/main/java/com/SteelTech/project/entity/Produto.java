@@ -23,7 +23,6 @@ public class Produto {
 
     @ManyToOne
     @JoinColumn(name = "estoque_id")
-    @JsonIgnore
     private Estoque estoque;
 
 
