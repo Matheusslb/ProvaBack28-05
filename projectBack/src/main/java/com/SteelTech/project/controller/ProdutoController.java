@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/Produto")
@@ -37,5 +37,18 @@ public class ProdutoController {
     public ResponseEntity<Void> deletarMedico(@PathVariable Long id) {
         produtoServices.deletar(id);
         return ResponseEntity.noContent().build();
+    }
+    @PutMapping("/{id}")
+    public Produto editar(@PathVariable Long id, @RequestBody Produto novoProduto) {
+        return produtoRepository.findById(id)
+                .map(produto -> {
+                    produto.setNome(novoProduto.getNome());
+                    produto.setTipoAco(novoProduto.getTipoAco());
+                    produto.setEspecificacao(novoProduto.getEspecificacao());
+                    produto.setQuantidade(novoProduto.getQuantidade());
+                    produto.setPreco(novoProduto.getPreco());
+                    return produtoRepository.save(produto);
+                })
+                .orElseThrow(() -> new RuntimeException("Aviso não encontrado"));
     }
 }

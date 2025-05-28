@@ -1,9 +1,7 @@
 package com.SteelTech.project.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,6 +20,12 @@ public class Produto {
     private String especificacao;
     private int quantidade;
     private double preco;
+
+    @ManyToOne
+    @JoinColumn(name = "estoque_id")
+    @JsonIgnore
+    private Estoque estoque;
+
 
 
 }

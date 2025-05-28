@@ -29,7 +29,10 @@ public class ProdutoServices {
     public Produto atualizar(Long id, Produto produtoAtualizado) {
         Produto produto = buscarPorId(id);
         produto.setNome(produtoAtualizado.getNome());
-
+        produto.setTipoAco(produtoAtualizado.getTipoAco());
+        produto.setEspecificacao(produtoAtualizado.getEspecificacao());
+        produto.setQuantidade(produtoAtualizado.getQuantidade());
+        produto.setPreco(produtoAtualizado.getPreco());
         return produtoRepository.save(produto);
     }
 
